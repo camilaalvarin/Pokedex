@@ -39,7 +39,7 @@ const getApiInfo = async () => {
             // image  : p.data.sprites.other.official-artwork.front_default,
             id: p.data.id,
             name: p.data.name,
-            type: p.data.types.map(t => t.type.name + '  '),
+            type: p.data.types.map(t => t.type.name), 
             attack: p.data.stats[1].base_stat,
             hp     : p.data.stats[0].hp,
             defense: p.data.stats[2].defense,
@@ -47,7 +47,7 @@ const getApiInfo = async () => {
             height : p.data.height,
             weight : p.data.weight
         
-    }
+    }  
 })   
     // console.log(nextInfo)
     // console.log(apisConcat)
@@ -114,62 +114,6 @@ router.get('/', async (req, res) => {
     }
 })
 
-
- 
-router.post('/', async (req, res) => {
-    const {
-        name, 
-        image,
-        hp,
-        attack,
-        defense,
-        speed,
-        height,
-        weight,
-        createdDb,
-        type 
-    } = req.body
-
-    try {
-        if(name) {
-            let pokemonCreated = await Pokemon.create({
-                name,
-                image,
-                hp,
-                attack,
-                defense,
-                speed, 
-                height,
-                weight,
-                createdDb
-            })
-        } else {
-            ('Es necesario poner un nombre')
-        }
-    
- 
-    // let typeDb = await Type.findAll({
-    //     where: { name : type}
-    // })
-
-    type.forEach(async type => {
-        let pokemonType = await Type.findOne({    // ----------------------------- findOne
-            where: { name: type}
-        })
-        await pokemonCreated.addType(pokemonType)
-    })
- 
-    // await pokemonCreated.addType(typeDb) 
-    return res.status(200).send(pokemonCreated)
-}
-catch (error) {
-    console.log(error)
-}
-})
- 
- 
-
-
 router.get('/:id', async(req,res)=>{
     const { id } = req.params;  
 
@@ -188,7 +132,7 @@ router.get('/:id', async(req,res)=>{
                 height : pokemonId.height,
                 weight : pokemonId.weight,
                 createdDb: pokemonId.createdDb,
-                // type  : pokemonId.type.map(t => t.name)     // ------------------------------- TYPE
+                // type  : pokemonId.Types[0]?.map(t => t.name)     // ------------------------------- TYPE
             }
             if (pokemonTypesId) return res.json(pokemonTypesId);
         } catch (error) {
@@ -214,6 +158,59 @@ router.get('/:id', async(req,res)=>{
     } catch (error) {
         return res.status(404).json({error: `No se encontro ${id}` });  
     }
+})
+
+
+router.post('/', async (req, res) => {
+    const {
+        name, 
+        image,
+        hp,
+        attack,
+        defense,
+        speed,
+        height,
+        weight,
+        createdDb,
+        type 
+    } = req.body
+ 
+    let pokemonCreated;
+    try {
+        if(name) {
+                pokemonCreated = await Pokemon.create({
+                name,
+                image,
+                hp,
+                attack,
+                defense,
+                speed, 
+                height,
+                weight,
+                createdDb
+            })
+        } else {
+            ('Es necesario poner un nombre')
+        }
+    
+ 
+    // let typeDb = await Type.findAll({
+    //     where: { name : type}
+    // })
+ 
+    type?.forEach(async type => {
+        let pokemonType = await Type.findOne({    // ----------------------------- findOne
+            where: { name: type}
+        })
+        await pokemonCreated.addType(pokemonType)
+    })
+  
+    // await pokemonCreated.addType(typeDb) 
+    return res.status(200).send(pokemonCreated)
+}
+catch (error) {
+    console.log(error)
+}
 })
 
 

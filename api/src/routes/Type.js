@@ -45,7 +45,7 @@ router.get('/', async (req, res) => {
         // const types = await typesApi.data.results.map(el => {
         //     return {
         //     type: el.name
-        //     }
+        //     } 
         // }) 
         // console.log(types)
         // const typesEach = types.map(el => {
