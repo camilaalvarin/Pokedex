@@ -1,0 +1,162 @@
+.detailContainerFlex{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.detailFlex {
+    display: flex;
+    justify-content: center;
+}
+
+.detailFlex .divMargin{
+    margin-right: 200px;
+}
+
+.detailsCard {
+    /* border: 1px solid black; */
+    width: 800px;
+}
+
+.border {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding-bottom: 100px;
+    padding-top: 100px;
+    margin-bottom: 20px;
+}
+
+/* h1 {
+    font-weight: bold;
+}
+
+h3 {
+    line-height: 40px;
+} */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+body{
+    background: #F1FAFF;
+}
+
+.container__cards{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card2{
+    width: 700px;
+    /* margin-top: 20px; */
+    transition: all 200ms;
+}
+
+.card2 h3 {
+    z-index: 100;
+}
+
+/* .card2:hover{
+    width: 715px;
+} */
+
+.card2 .cover2{
+    width: 100%;
+    height: 380px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card2 .cover2 img{
+    width: 310px;
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 40px;
+    z-index: 1;
+    filter: drop-shadow(5px 5px 4px rgba(0,0,0,0.5));
+    transition: all 500ms;
+}
+
+.card2:hover .cover2 img{
+    top: 32px;
+    filter: none;
+}
+
+.card2 .img__back2{
+    width: 100%;
+    height: 390px;
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    background-size: cover;
+    border-radius: 20px;
+    border: 1px solid black;
+    transition: all 200ms;
+}
+
+.img__back{
+    background-image: url(../Card/image/bg2.jpg);
+}
+
+.img__back2{
+    background-image: url(../Card/image/bg2.jpg);
+}
+
+.card2:hover .img__back2{
+    bottom: -72px;
+}
+
+.card2 .description2{
+    background: white;
+    margin-top: -10px;
+    padding: 10px;
+    border-radius: 0px 0px 20px 20px;
+    border: 1px solid black;
+    transition: all 200ms;
+}
+
+.card2:hover .description2{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.card2 .description2 h3{
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none !important;
+    color: black;
+}
+.card2 .description2 h3 a{
+    text-decoration: none !important;
+}
+
+.card2 .description2 h4{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.detailbutton {
+    width: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.detailbutton:hover {
+    background-color: red;
+}

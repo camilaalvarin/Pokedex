@@ -1,0 +1,50 @@
+.createpokeFlex {
+    display: flex;
+    justify-content: center;
+}
+
+.createInput {
+    width: 200px;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top: -15px;
+}
+
+.crearpokebutton {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.crearpokebutton:hover {
+    background-color: red;
+}
+
+.crearpokeHome {
+    width: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.crearpokeHome:hover {
+    background-color: red;
+}
+
+.pokecreateBorder {
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding-top: 30px;
+    /* padding-bottom: -50px; */
+}

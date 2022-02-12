@@ -1,0 +1,45 @@
+.father-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+select  {
+    width: 200px;
+    padding: 10px;
+    /* border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px; */
+    border-radius: 20px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.crear {
+    padding: 13px !important;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.crear:hover {
+    background-color: red;
+}
+
+.refreshButton {
+    width: 80px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-left: 6px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.refreshButton:hover {
+    background-color: red;
+}
