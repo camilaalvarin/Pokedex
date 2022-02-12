@@ -2,35 +2,7 @@ const { Router } = require('express');
 const { Pokemon, Type } = require('../db')
 const router = Router();
 const axios = require('axios')
-// const { v4 } = require('uuid')
 
-// DE ACA HASTA ABAJO ES LO QUE YO HICE. FUNCIONA SOLO LO DE TRAER POR API PERO NO POR BD. 
-
-// router.get('/', (req, res, next) => {
-//     res.send(`Hello, it's me, Pokemon get!`)
-// })
-
-// const getApiInfo = async () => {
-//     const apiUrl = await axios.get (`https://pokeapi.co/api/v2/pokemon`);
-//     const apiInfo = await apiUrl.data.results.map(el => {
-//         return {
-//             name: el.name,
-//             url: el.url
-//         }
-//     })
-
-//     const pokemonNext = await axios.get(apiUrl.data.next)
-//     const nextInfo = await pokemonNext.data.results.map(el => {
-//         return {
-//         name: el.name,
-//         url: el.url
-//     } 
-// })
-//     const apisConcat = apiInfo.concat(nextInfo)
-    
-//     console.log(apisConcat)
-//     return apisConcat
-// }
 
 // ---------------------------------------------------------------------------------------- PROBANDO
 const getApiInfo = async () => {
@@ -93,34 +65,7 @@ const getApiInfo = async () => {
 // ------------------------------------------------------------------------------------------ PROBANDO
 
 
-// router.get('/', (req, res) => {
-//     res.send(getApiInfo())
-// })
 
-// PROBANDO
-// const pokemonNext = await apiUrl.data.next
-// const nextInfo = await pokemonNext.data.results.map(el => {
-//     return {
-//         name: el.name
-//     }
-// })
-
-// const apisConcat = apiInfo.concat(nextInfo)
-// PROBANDO
-
-// ASI FUNCIONA ↓
-
-// router.get('/', async (req, res) => {
-//     const apiUrl = await axios.get (`https://pokeapi.co/api/v2/pokemon`);
-//     const apiInfo = await apiUrl.data.results.map(el => {
-//         return {
-//             name: el.name
-//         }
-//     })
-//     res.send(apiInfo)
-// })
-
-// HASTA ACA
 
 //  ------------------------------------------
 
@@ -169,21 +114,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-// ---------------------------------------------------------------------------------------------
 
-// router.get('/pokemon/:id', async (req, res) => {
-//     const { id } = req.params
-
-//     const pokemonsTotal = await getAllPokemons();
-
-//     if(id) {
-//         let pokemonID = await pokemonsTotal.filter(p => p.id === id);
-
-//         pokemonID?
-//         res.status(200).json(pokemonID) :
-//         res.status(404).send('No existe un pokemon con ese ID')
-//     }
-// })
  
 router.post('/', async (req, res) => {
     const {
@@ -237,45 +168,7 @@ catch (error) {
 })
  
  
-// ---------------------------------------------
-// NO FUNCA
-// router.post('/', async (req, res) => {
-//     const {
-//         id,
-//         name,
-//         hp,
-//         attack,
-//         defense,
-//         speed,
-//         height,
-//         weight,
-//         createdDb,
-//         type
-//     } = req.body
 
-//     let idNuevo = v4()
-//     let pokemonCreated = await Pokemon.create({
-//         id: idNuevo,
-//         name,
-//         hp,
-//         attack,
-//         defense,
-//         speed,
-//         height,
-//         weight,
-//         createdDb
-//     })
-
-//     let typeDbb = await Type.findAll({
-//         where: { name: type}
-//     })
-
-//     pokemonCreated.addType(typeDbb)
-//     res.send(pokemonCreated)
- 
-// })
-// NO FUNCA
-// ---------------------------------------------
 
 router.get('/:id', async(req,res)=>{
     const { id } = req.params;  
@@ -323,65 +216,7 @@ router.get('/:id', async(req,res)=>{
     }
 })
 
-// COPIADO ↓ ----------------------------------------------------------------
-// router.post('/', async (req,res) =>{
-//     try {
-//         const { name, image, hp, attack, defense, speed, height, weight, createdDb, types } = req.body;
-//         const pokemon = await Pokemon.create({
-//             name : name,  //toLocaleLowerCase // name.toLowerCase()
-//             image,
-//             hp,
-//             attack,
-//             defense,
-//             speed,
-//             height,
-//             weight,
-//             createdDb
-//         })
-//         await pokemon.addTypes(types)
-//         res.status(201).send('Pokemon fue creado con éxito!!!')
-//     } catch (error) {
-//         res.status(404).send('Pokemon no fue creado: ' + error);
-//     }
-// })
-//  HASTA ACA ↑ ----------------------------------------------------------------
-  
-// {
-//     "id": 22,
-//     "name": "fearow",
-//     "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/22.svg",
-//     "hp": 65,
-//     "attack": 90,
-//     "defense": 65,
-//     "speed": 100,
-//     "height": 12,
-//     "weight": 380,
-//     "types": [
-//         "normal",
-//         "flying"
-//     ]
-// }
 
-// router.get('/', (req, res, next) => {
-//     return Pokemon.findAll()
-//     .then((Pokemon) => {
-//         res.send(Pokemon)
-//     })
-// })
-
-// router.post('/', (req, res, next) => {
-//     res.status(201).send(`Hello, it's me, Pokemon post!`)
-// })
-
-// router.put('/', (req, res, next) => {
-//     res.status(201).send(`Hello, it's me, Pokemon put!`)
-// })
-
-// router.delete('/', (req, res, next) => {
-//     res.status(201).send(`Hello, it's me, Pokemon delete!`)
-// })
-
-// COPIADOOOOOOOOOOOOOOOOOOOOO ↓
 
 
 module.exports = router
