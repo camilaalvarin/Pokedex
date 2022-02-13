@@ -71,9 +71,33 @@ const getApiInfo = async () => {
 
 const getDbInfo = async () => {
     return await Pokemon.findAll({
-        include: Type
+        include: {
+            model: Type,
+            attributes: ['name'],
+            through: {
+                attributes: [],
+            }
+        }
     })
 }
+// const getDbInfo = async () => {
+//     return await Pokemon.findAll({
+//         include: Type 
+//     })
+// }
+
+
+// const getDBInfo=async () =>{
+//     return await Character.findAll({
+//         include: {
+//             model: Occupation,
+//             attributes: ['name'],
+//             through: {
+//                 attributes: [],
+//             }
+//         }
+//     })
+// }
 
 // router.get('/', (req, res) => {
 //     res.send(getDbInfo())
@@ -128,11 +152,11 @@ router.get('/:id', async(req,res)=>{
                 hp     : pokemonId.hp,
                 attack : pokemonId.attack,
                 defense: pokemonId.defense,
-                speed  : pokemonId.speed,
+                speed  : pokemonId.speed,    
                 height : pokemonId.height,
                 weight : pokemonId.weight,
                 createdDb: pokemonId.createdDb,
-                // type  : pokemonId.Types[0]?.map(t => t.name)     // ------------------------------- TYPE
+                type  : pokemonId?.Types?.map(t => t.name)     // ------------------------------- TYPE
             }
             if (pokemonTypesId) return res.json(pokemonTypesId);
         } catch (error) {

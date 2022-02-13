@@ -45,7 +45,7 @@ router.get('/', async (req, res) => {
         // const types = await typesApi.data.results.map(el => {
         //     return {
         //     type: el.name
-        //     } 
+        //     }     
         // }) 
         // console.log(types)
         // const typesEach = types.map(el => {
@@ -57,7 +57,7 @@ router.get('/', async (req, res) => {
             })
         })
         const allTypes = await Type.findAll()
-        res.send(allTypes)
+        res.json(allTypes)
     } catch (error) {
         res.status(404).send('jodete')
     }
