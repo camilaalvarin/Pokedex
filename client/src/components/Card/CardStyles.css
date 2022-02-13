@@ -65,19 +65,15 @@ body{
     transition: all 300ms;
 }
 
-/* .img__back{
-    background-image: url(../Card/image/bg1.jpg);
-} */
 .img__back{
-    background-image: url(../Card/image/bg2.jpg);
+    background-image: url(../Card/image/bg3.jpg);
 }
-
-.img__back2{
-    background-image: url(../Card/image/3333.gif);
+.camilaaa{
+    background-image: url(../Card/image/444.gif);
 }
 
 /* .card:nth-of-type(3) .img__back{
-    background-image: url(../Card/image/bg3.jpg);
+    background-image: url(../Card/image/444.gif);
 }  */
 
 .card:hover .img__back{

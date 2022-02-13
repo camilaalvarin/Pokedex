@@ -105,13 +105,13 @@ body{
     transition: all 200ms;
 }
 
-.img__back{
+/* .img__back{
     background-image: url(../Card/image/bg2.jpg);
 }
 
 .img__back2{
     background-image: url(../Card/image/bg2.jpg);
-}
+} */
 
 .card2:hover .img__back2{
     bottom: -72px;

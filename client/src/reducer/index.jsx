@@ -138,8 +138,7 @@ function rootReducer (state = initialState, action) {
 
                 case 'FILTER_BY_ORIGIN':
                     const allPokemons = state.allPokemons;
-                    const getOriginFilter = action.payload === 'all' ? allPokemons :
-                    action.payload === 'db' ?
+                    const getOriginFilter = action.payload === 'db' ?    //action.payload === 'all' ? allPokemons :
                     allPokemons.filter(p => p.createdDb === true) :
                     allPokemons.filter(p => !p.createdDb)
 
@@ -163,12 +162,12 @@ function rootReducer (state = initialState, action) {
                     //     } 
 
                     case 'FILTER_BY_TYPES': 
-                    // let nada = 'no hay pokemons de type'
                     let allPokemons0 = state.allPokemons;
                     // console.log(allPokemons0)
 
                     let filteredByType = action.payload === 'all' ? allPokemons0 :
-                    allPokemons0.filter(p => p.type === action.payload )
+                    // allPokemons0.filter(p => p.type === action.payload )
+                    allPokemons0.filter(p => p.type.includes(action.payload))   //p.type.includes(action.payload) || p.Types.includes(action.payload)
                     
                     if (filteredByType.length <= 0) {
                         filteredByType = allPokemons0;

@@ -1,7 +1,7 @@
 import React from "react";
 import './CardStyles.css'
 
-export default function Card ({name, image, type}) {
+export default function Card ({name, image, type, Types}) {
 
     let letra = name.toUpperCase()
     return (
@@ -9,7 +9,8 @@ export default function Card ({name, image, type}) {
         <div className="card">
             <div className="cover">
                 <img src={image} alt="img not found" />
-                {/* <div className={type === 'fire' ? 'img__back' : 'img__back2'}></div> */}
+                {/* <div className={type[0] === 'fire' ? 'img__back2' : 'img__back'}></div> */}
+                {/* <div className={type[0] === 'water' ? 'camilaaa' : 'img__back'}></div> */}
                 <div className='img__back'></div>
                 
                 {/* {
@@ -22,7 +23,30 @@ export default function Card ({name, image, type}) {
             </div>
             <div className="description">
                 <h3>{letra}</h3>
-                <h4>{type}</h4>
+                <div>
+                    {/* {type?.map((el,index)=>{
+                        return <div key={index}>{el}</div>
+                    })} */}
+
+                    {/* {type?type.map((el,index)=>{
+                        return <div key={index}>{el}</div>
+                    }) : 'poisoN'} */}
+
+                    {type && type.map((el,index)=>{
+                        return <div key={index}>{el}</div>
+                    })}
+
+                    {Types && Types.map((el,index)=>{
+                        return <div key={index}>{el.name}</div>
+                    })}
+
+                    {/* {Types?Types.map((el,index)=>{
+                        return <div key={index}>{el}</div>
+                    }) : 'poisoN'} */}
+
+                </div>
+
+                
                 {/* <input type="button" value="Leer Más" /> */}
             </div>
         </div>

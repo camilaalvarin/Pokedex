@@ -10,6 +10,23 @@ export function getAllPokemons() {
     }
 } 
 
+export function getDetail (id) {
+    console.log(id)
+    return async function (dispatch) {
+        try {
+            var json = await axios.get('http://localhost:3001/api/pokemon/' + id);
+            console.log('json')
+            console.log(json)
+            return dispatch ({
+                type: 'GET_DETAILS',
+                payload: json.data
+            }) 
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export function getByName (name) {
     return async function (dispatch) {
         try {
@@ -88,19 +105,3 @@ export function postPokemon (payload) {
     }
 }
 
-export function getDetail (id) {
-    console.log(id)
-    return async function (dispatch) {
-        try {
-            var json = await axios.get('http://localhost:3001/api/pokemon/' + id);
-            console.log('json')
-            console.log(json)
-            return dispatch ({
-                type: 'GET_DETAILS',
-                payload: json.data
-            }) 
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}

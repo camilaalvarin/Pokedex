@@ -106,17 +106,17 @@ export default function Home(){
 
             <SearchBar />
 
-            <select onClick={e => {orderByNames(e)}}>
+            <select onChange={e => {orderByNames(e)}}>
                 <option value='asc'>Ascendente</option>
                 <option value='desc'>Descendente</option>
             </select>
-            <select onClick={e => {orderByAttacks(e)}}>
+            <select onChange={e => {orderByAttacks(e)}}>
                 {/* <option value='all'>Todos</option> */}
                 <option value='maxAttack'>Stronger to Weaker</option>
                 <option value='minAttack'>Weaker to Stronger</option>
             </select>
             
-            <select onClick={e => {filteredByOrigin(e)}}>
+            <select onChange={e => {filteredByOrigin(e)}}>
                 <option value='all'>Todos</option>
                 <option value='db'>Creados</option>
                 <option value='api'>Existentes</option>
@@ -125,11 +125,11 @@ export default function Home(){
             <select onChange={(e) => {handleFilterByTypes(e)}}>
                     <option value="all">Types / Show All</option>
                     {types
-                    // .sort((a, b) => {
-                    //     if (a.name < b.name) return -1;
-                    //     if (a.name > b.name) return 1;
-                    //     return 0;
-                    // })
+                    .sort((a, b) => {
+                        if (a.name < b.name) return -1;
+                        if (a.name > b.name) return 1;
+                        return 0;
+                    })
                     .map((t) => (
                         <option value={t.name.toLowerCase()} key={t.name}>
                         {t.name.toLowerCase()}
@@ -158,7 +158,7 @@ export default function Home(){
             {  currentCharacters?.map(el => {
                         return (<div>
                                 <Link to={"/home/" + el.id}>
-                                    <Card name={el.name} image={el.image} type={el.type} key={el.id}/>
+                                    <Card name={el.name} image={el.image} type={el.type} Types={el.Types} key={el.id}/>
                                 </Link>
                             </div>
                         )

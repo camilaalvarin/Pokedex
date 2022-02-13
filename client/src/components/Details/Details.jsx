@@ -5,13 +5,13 @@ import { useEffect } from "react";
 import { getDetail } from "../../actions/index"
 import './Details.css'
 
-export default function Details (props) {
+export default function Details (props) {   //{name, image, type, Types, id, height, weight, attack, speed}
     console.log(props) 
     const dispatch = useDispatch()
     const params = useParams();
     const pokemonDetail = useSelector((state) => state.details)
     console.log(pokemonDetail)
-    console.log('dvcdscsdvcdv')
+    console.log('MIRA ACA')
 
     // useEffect(() => {
     //     dispatch(getDetail(params.id))
@@ -44,7 +44,25 @@ export default function Details (props) {
             <div className="description2">
                 <div>
                     <h3> TYPES</h3>
-                    {/* <h3> {pokemonDetail.type}</h3> */}
+                    <div>
+                    {/* {pokemonDetail.type?pokemonDetail.type.map((el,index)=>{
+                        return <div key={index}>{el}</div>
+                    }): 'poison grass'} */}
+
+                    {/* {pokemonDetail.Types?pokemonDetail.Types[0].map((el,index)=>{
+                        return <div key={index}>{el.name}</div>
+                    }) : 'camilaa'} */}
+
+
+                    {pokemonDetail.type && pokemonDetail.type.map((el,index)=>{
+                        return <div key={index}>{el}</div>
+                    })}
+
+                    {pokemonDetail.Types && pokemonDetail.Types.map((el,index)=>{
+                        return <div key={index}>{el.name}</div>
+                    })}
+                  
+                    </div>
                 </div>
                 <div className="detailFlex">
                     <div className="divMargin">  
@@ -63,6 +81,7 @@ export default function Details (props) {
                             <span>{t}</span>
                             )
                         })}</h3>  */}
+                        
                     </div>
                 </div>
             </div>
