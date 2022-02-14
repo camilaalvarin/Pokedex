@@ -3,8 +3,6 @@ const { Pokemon, Type } = require('../db')
 const router = Router();
 const axios = require('axios')
 
-
-// ---------------------------------------------------------------------------------------- PROBANDO
 const getApiInfo = async () => {
     const apiUrl = await axios.get (`https://pokeapi.co/api/v2/pokemon`); //TRAE LA DATA GENERAL. NAME Y URL
     const apiInfo = await apiUrl.data.results.map(el => {
@@ -29,14 +27,10 @@ const getApiInfo = async () => {
     })
 
     showAll = await Promise.all(showAll);
-     
-
+ 
     const finalInfo = await showAll.map(p => {
         return {
-            // image: p.data.sprites.other.dream_world.front_default,
-            // image: p.data.sprites.other.home.front_default,
             image  : p.data.sprites.other.dream_world.front_default,
-            // image  : p.data.sprites.other.official-artwork.front_default,
             id: p.data.id,
             name: p.data.name,
             type: p.data.types.map(t => t.type.name), 
@@ -49,25 +43,8 @@ const getApiInfo = async () => {
         
     }  
 })   
-    // console.log(nextInfo)
-    // console.log(apisConcat)
-    // console.log(showAll)
-    // console.log(finalInfo)
     return finalInfo
 }
-   
-// ----------- PROBANDO RUTA 
-
-// router.get('/', (req, res) => {
-//     res.send(getApiInfo())
-// })
-
-// ------------------------------------------------------------------------------------------ PROBANDO
-
-
-
-
-//  ------------------------------------------
 
 const getDbInfo = async () => {
     return await Pokemon.findAll({
@@ -80,39 +57,6 @@ const getDbInfo = async () => {
         }
     })
 }
-// const getDbInfo = async () => {
-//     return await Pokemon.findAll({
-//         include: Type 
-//     })
-// }
-
-
-// const getDBInfo=async () =>{
-//     return await Character.findAll({
-//         include: {
-//             model: Occupation,
-//             attributes: ['name'],
-//             through: {
-//                 attributes: [],
-//             }
-//         }
-//     })
-// }
-
-// router.get('/', (req, res) => {
-//     res.send(getDbInfo())
-// })
-
-// router.get('/', async (req, res) => {
-//     let camila = await Pokemon.findAll({
-//                 include: Type
-//             })
-//     res.send(camila)
-// })
-
-
-
-//  --------------------------------------------
 
 const getAllPokemons = async () => {
     const apiInfo = await getApiInfo();
@@ -137,6 +81,11 @@ router.get('/', async (req, res) => {
         res.status(200).send(pokemonsTotal)
     }
 })
+
+// router.get('/', (req, res) => {
+//     res.send(getApiInfo())
+// })
+
 
 router.get('/:id', async(req,res)=>{
     const { id } = req.params;  
@@ -163,7 +112,7 @@ router.get('/:id', async(req,res)=>{
             return res.status(404).json({error: `No se encontro ${id}` });
         }
     };
-    try {
+    try {  
         let pokemon_Id = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`);
             pokemon_Id ={
                 id     : pokemon_Id.data.id,
@@ -182,8 +131,8 @@ router.get('/:id', async(req,res)=>{
     } catch (error) {
         return res.status(404).json({error: `No se encontro ${id}` });  
     }
-})
-
+})  
+   
 
 router.post('/', async (req, res) => {
     const {

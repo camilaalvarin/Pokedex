@@ -167,7 +167,14 @@ function rootReducer (state = initialState, action) {
 
                     let filteredByType = action.payload === 'all' ? allPokemons0 :
                     // allPokemons0.filter(p => p.type === action.payload )
-                    allPokemons0.filter(p => p.type.includes(action.payload))   //p.type.includes(action.payload) || p.Types.includes(action.payload)
+                    // allPokemons0.filter(p => p.type.includes(action.payload))   //p.type.includes(action.payload) || p.Types.includes(action.payload)
+                    allPokemons0.filter(p => p.type.includes(action.payload))
+                        
+                    //     {
+                    //     if (p.type.includes(action.payload)) {
+                    //         return p
+                    //     } 
+                    // } )    // p.type.includes(action.payload)
                     
                     if (filteredByType.length <= 0) {
                         filteredByType = allPokemons0;

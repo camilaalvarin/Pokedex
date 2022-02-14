@@ -1,6 +1,7 @@
 ul {
     display: flex;
     justify-content: center;
+    margin-top: 17px;
 }
 
 ul li {
@@ -13,6 +14,12 @@ ul li a {
     padding-left: 15px;
     padding-right: 15px;
     border: 1px solid black;
-    border-radius: 100%;
+    background-color: black;
+    font-weight: bold;
+    color: white;
     margin: 5px;
+}
+
+ul li a:hover {
+    background-color: red;
 }

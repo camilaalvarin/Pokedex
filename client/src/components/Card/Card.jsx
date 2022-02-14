@@ -11,7 +11,12 @@ export default function Card ({name, image, type, Types}) {
                 <img src={image} alt="img not found" />
                 {/* <div className={type[0] === 'fire' ? 'img__back2' : 'img__back'}></div> */}
                 {/* <div className={type[0] === 'water' ? 'camilaaa' : 'img__back'}></div> */}
+
+                {/* de guille ↓ */}
+                {/* className={(style === 'glass') ? 'glass' : '' */}
                 <div className='img__back'></div>
+                {/* <div className={(type[0] === 'fire') ? 'img__back' : 'camilaaap'}></div> */}
+                {/* <div className={(type[0] === 'grass') ? 'camilaaap' : ''}></div> */}
                 
                 {/* {
                     type === 'fire' ? 
@@ -31,15 +36,15 @@ export default function Card ({name, image, type, Types}) {
                     {/* {type?type.map((el,index)=>{
                         return <div key={index}>{el}</div>
                     }) : 'poisoN'} */}
-
+                <div className="descriptionTypes">
                     {type && type.map((el,index)=>{
-                        return <div key={index}>{el}</div>
+                        return <p key={index}>{el}</p>
                     })}
 
                     {Types && Types.map((el,index)=>{
-                        return <div key={index}>{el.name}</div>
+                        return <p key={index}>{el.name}</p>
                     })}
-
+                </div>
                     {/* {Types?Types.map((el,index)=>{
                         return <div key={index}>{el}</div>
                     }) : 'poisoN'} */}
@@ -50,28 +55,5 @@ export default function Card ({name, image, type, Types}) {
                 {/* <input type="button" value="Leer Más" /> */}
             </div>
         </div>
-        // <div className="cardStyl">
-        //     <img src={image} alt="img not found" width="200px" height="250px" />
-        //     <h3>{name}</h3>
-        //     <h5>{type}</h5>
-        // </div>
     )
 } 
-
-// export function camila () {
-//     <div class="container__cards">
-
-//         <div className="card">
-//             <div className="cover">
-//                 <img src={image} alt="img not found" />
-//                 <div className="img__back"></div>
-//             </div>
-//             <div claclassName="description">
-//             <h3>{name}</h3>
-//                 <p> <b>Types</b> </p>
-//                 <h5>{type}</h5>
-//                 <input type="button" value="Leer Más" />
-//             </div>
-//         </div>
-//         </div>
-// }

@@ -37,13 +37,12 @@ export default function Details (props) {   //{name, image, type, Types, id, hei
             <div className="cover2">
             <h1>{pokemonDetail.name}</h1>
             <img src={pokemonDetail.image} />
-            {/*  {pokemonDetail.type} */}
-                <div className='img__back2'></div>
+            <div className='img__back3'></div>
                 
             </div>
             <div className="description2">
-                <div>
-                    <h3> TYPES</h3>
+                <div className="detailsDescFlex">
+                    {/* <h3> TYPES</h3> */}
                     <div>
                     {/* {pokemonDetail.type?pokemonDetail.type.map((el,index)=>{
                         return <div key={index}>{el}</div>
@@ -55,11 +54,11 @@ export default function Details (props) {   //{name, image, type, Types, id, hei
 
 
                     {pokemonDetail.type && pokemonDetail.type.map((el,index)=>{
-                        return <div key={index}>{el}</div>
+                        return <p key={index}>{el}</p>
                     })}
 
                     {pokemonDetail.Types && pokemonDetail.Types.map((el,index)=>{
-                        return <div key={index}>{el.name}</div>
+                        return <p key={index}>{el.name}</p>
                     })}
                   
                     </div>

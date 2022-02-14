@@ -1,3 +1,23 @@
+.logoDiv {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 200;
+}
+
+.Logo {
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+.backgroundHome {
+    background-image: url(../Card/image/pradera5.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .father-flex {
     display: flex;
     flex-wrap: wrap;
@@ -29,8 +49,8 @@ select  {
     background-color: red;
 }
 
-.refreshButton {
-    width: 80px;
+.loadAllButton {
+    width: 150px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 20px;
@@ -40,6 +60,67 @@ select  {
     font-weight: bold;
 }
 
-.refreshButton:hover {
+.loadAllButton:hover {
+    background-color: red;
+}
+
+.paginadoContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.firstButton {
+    border: 1px solid black;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    margin: 5px;
+}
+.firstButton:hover {
+    background-color: red;
+}
+.prevButton {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    margin: 5px;
+}
+
+.prevButton:hover {
+    background-color: red;
+}
+
+.nextButton {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    margin: 5px;
+}
+
+.nextButton:hover {
+    background-color: red;
+}
+
+.lastButton {
+    border: 1px solid black;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    margin: 5px;
+}
+
+.lastButton:hover {
     background-color: red;
 }

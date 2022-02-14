@@ -7,6 +7,8 @@ import Card from "../Card/Card";
 import './HomeStyles.css'
 import Paginado from "../Paginado/Paginado"
 import SearchBar from "../SearchBar/SearchBar";
+import Loading from '../Loading/Loading'
+import Logo from '../Landing/image/Pokémon_Logo.png'
 
 export default function Home(){
 
@@ -20,49 +22,52 @@ export default function Home(){
 
     // PAGINADO
     const [currentPage,setCurrentPage] = useState(1)
-    const [charactersPerPage,setCharactersPerPage] = useState(12)
-    const indexOfLastCharacter = currentPage * charactersPerPage //6
-    const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage //0
-    const currentCharacters = allPokemons.slice(indexOfFirstCharacter,indexOfLastCharacter)
-    console.log(currentCharacters)
+    const [pokemonsPerPage,setPokemonsPerPage] = useState(12)
+    const indexOfLastPokemon = currentPage * pokemonsPerPage //12
+    const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage //0
+    const currentPokemons = allPokemons.slice(indexOfFirstPokemon,indexOfLastPokemon)
     // pagina    primer indice    ultimo indice
     //    1           0                 6            6 personajes
     //    2           6                 13           6 personajes y asi hasta terminar paginado
-    const paginado = (pageNumber) => {
+    const page = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
     // --------------------
     // HACIENDO BOTONES NEXT Y PREV
 
-    let actual = currentPage;
+    console.log('allPokemons')
+    let allPok =  allPokemons.length
+    console.log(allPok)
+    console.log('allPokemons')
+    console.log('pokemonsPerPage')
+    console.log(pokemonsPerPage)
+    console.log('pokemonsPerPage')
+    console.log('camilita')
+    let camilita =  allPok/pokemonsPerPage;
+    console.log(camilita)
+    console.log('camilita')
 
-    function next (){
-        setCurrentPage(actual + 1)
-    }
-
-    function prev (){
-        setCurrentPage(actual - 1)
-    }
-
-    function last (){
-        setCurrentPage(4)
-    }
-
-    function first (){
-        setCurrentPage(1)
-    }
-
-    // let lastPage = Math.ceil(allPokemons/charactersPerPage) 
-    // let lastPageother = allPokemons + charactersPerPage
-    // console.log('lasPage' + lastPage)
-    // console.log('lasPage' + lastPageother)
-    
-    // FIN PAGINADO
-
+    // -------------------------------------
     useEffect(() => {
         dispatch(getAllPokemons());
         dispatch(getTypes());
     },[dispatch])
+    // -------------------------------------
+
+    function first () {
+        setCurrentPage(1)
+    }
+    function prev () {
+        setCurrentPage(currentPage - 1)
+    }
+    function next () {
+        setCurrentPage(currentPage + 1)
+    }
+    function last () {
+        setCurrentPage(camilita)
+    }
+    
+    // FIN PAGINADO
 
     // const onClick = (e) => {
     //     e.preventDefault();
@@ -101,14 +106,15 @@ export default function Home(){
 
 
     return (
-        <div>
-            <h1>Pokedexxx</h1>
-
+        <div className="backgroundHome">
+            <div className="logoDiv">
+                <img className="Logo" src={Logo} width='350px' />
+            </div>
             <SearchBar />
 
             <select onChange={e => {orderByNames(e)}}>
-                <option value='asc'>Ascendente</option>
-                <option value='desc'>Descendente</option>
+                <option value='asc'>Asc AZ</option>
+                <option value='desc'>Desc ZA</option>
             </select>
             <select onChange={e => {orderByAttacks(e)}}>
                 {/* <option value='all'>Todos</option> */}
@@ -117,8 +123,8 @@ export default function Home(){
             </select>
             
             <select onChange={e => {filteredByOrigin(e)}}>
-                <option value='all'>Todos</option>
-                <option value='db'>Creados</option>
+                <option value='all'>All</option>
+                <option value='db'>Created</option>
                 <option value='api'>Existentes</option>
             </select>
 
@@ -140,7 +146,7 @@ export default function Home(){
             <Link to='/pokemon'>
                 <input type='submit' className="crear" value='Crear Pokemon!' />
             </Link>
-            <button className="refreshButton" onClick={(e) => handleClick(e)} >Refresh!</button> 
+            <button className="loadAllButton" onClick={(e) => handleClick(e)} >Load all pokémons</button> 
 
                 
                 {/* 
@@ -153,9 +159,11 @@ export default function Home(){
                 </select>
             */}
             
-            
             <div  className="father-flex">
-            {  currentCharacters?.map(el => {
+            {
+            !currentPokemons.length?
+                    <Loading /> :
+            currentPokemons?.map(el => {
                         return (<div>
                                 <Link to={"/home/" + el.id}>
                                     <Card name={el.name} image={el.image} type={el.type} Types={el.Types} key={el.id}/>
@@ -165,16 +173,26 @@ export default function Home(){
                 })
             }
             </div>
-            
-            <button type="button" disabled={currentPage === 1} onClick={first}>FIRST</button>
-            <button type="button" disabled={currentPage === 1} onClick={prev}>PREV</button>
-            <button type="button" disabled={currentPage === 4} onClick={next}>NEXT</button>
-            <button type="button" disabled={currentPage === 4} onClick={last}>LAST</button>
-            <Paginado
-            charactersPerPage={charactersPerPage}
-            allPokemons={allPokemons.length}
-            paginado={paginado}
-            />
+
+            <div className="paginadoContainer">
+                <div className="paginadoFirstButtons">
+                    <button className="firstButton" type="button" disabled={currentPage === 1} onClick={first}>FIRST</button>
+                    <button className="prevButton" type="button" disabled={currentPage === 1} onClick={prev}>PREV</button>
+                </div>
+                <div className="paginadoPages">
+                    <Paginado
+                    pokemonsPerPage={pokemonsPerPage}
+                    allPokemons={allPokemons.length}
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+                    page={page}
+                    />
+                </div>
+                <div className="paginadoLastButtons">
+                    <button className="nextButton" type="button" disabled={currentPage === camilita} onClick={next}>NEXT</button>
+                    <button className="lastButton" type="button" disabled={currentPage === camilita} onClick={last}>LAST</button>
+                </div>
+            </div>
             {/* <SearchBar /> */}
         </div>
     )

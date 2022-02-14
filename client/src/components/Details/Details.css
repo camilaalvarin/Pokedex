@@ -43,9 +43,9 @@ h3 {
     font-family: 'Lato', sans-serif;
 }
 
-body{
+/* body{
     background: #F1FAFF;
-}
+} */
 
 .container__cards{
     max-width: 1200px;
@@ -105,17 +105,10 @@ body{
     transition: all 200ms;
 }
 
-/* .img__back{
+.img__back3{
     background-image: url(../Card/image/bg2.jpg);
 }
 
-.img__back2{
-    background-image: url(../Card/image/bg2.jpg);
-} */
-
-.card2:hover .img__back2{
-    bottom: -72px;
-}
 
 .card2 .description2{
     background: white;
@@ -124,6 +117,12 @@ body{
     border-radius: 0px 0px 20px 20px;
     border: 1px solid black;
     transition: all 200ms;
+}
+
+.card2 .description2 .detailsDescFlex{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .card2:hover .description2{
@@ -139,6 +138,10 @@ body{
 }
 .card2 .description2 h3 a{
     text-decoration: none !important;
+}
+
+.card2 .description2 p{
+    font-weight: bold;
 }
 
 .card2 .description2 h4{
