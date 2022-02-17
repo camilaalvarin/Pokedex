@@ -1,43 +1,44 @@
 import axios from 'axios'
 
 export function getAllPokemons() {
-    return async function (dispatch) {
-        var json = await axios.get('http://localhost:3001/api/pokemon')
-        return dispatch ({
-            type: 'GET_ALL_POKEMONS',
-            payload: json.data
+    return function (dispatch) {
+        axios.get('http://localhost:3001/api/pokemon')
+        .then((json) => {
+            return dispatch ({
+                type: 'GET_ALL_POKEMONS',
+                payload: json.data
+            })
         })
     }
 } 
 
 export function getDetail (id) {
     console.log(id)
-    return async function (dispatch) {
-        try {
-            var json = await axios.get('http://localhost:3001/api/pokemon/' + id);
-            console.log('json')
-            console.log(json)
-            return dispatch ({
+    return function (dispatch) {
+
+            axios.get('http://localhost:3001/api/pokemon/' + id)
+            .then((json) => {
+                console.log('json')
+                console.log(json)
+                return dispatch ({
                 type: 'GET_DETAILS',
                 payload: json.data
             }) 
-        } catch (error) {
-            console.log(error)
-        }
+            })
+            
+        } 
     }
-}
+
 
 export function getByName (name) {
-    return async function (dispatch) {
-        try {
-            var json = await axios.get('http://localhost:3001/api/pokemon?name=' + name);
-            return dispatch ({
-                type: 'GET_BY_NAME',
-                payload: json.data
+    return function (dispatch) {
+             axios.get('http://localhost:3001/api/pokemon?name=' + name)
+            .then((json) => {
+                dispatch ({
+                    type: 'GET_BY_NAME',
+                    payload: json.data
+                })
             })
-        } catch (error) {
-            console.log(error)
-        }
     }
 }
 
@@ -54,33 +55,17 @@ export function orderByAttack (payload) {
     }
 }
 
-export function filterByStatus (payload) {
-    return {
-        type: 'FILTER_BY_STATUS',
-        payload
-    }
-}
-
-// export function getTypes () {
-//     return async function (dispatch) {
-//         var info = await axios.get('http://localhost:3001/api/type');
-//         return dispatch ({
-//             type: 'GET_TYPES',
-//             payload: info.data
-//         })
-//     }
-// }
-
 export function getTypes(){
-    return async function (dispatch) {
-        var json = await axios.get('http://localhost:3001/api/type');
-        return dispatch({
-            type: 'GET_TYPES',
-            payload: json.data
+    return function (dispatch) {
+        axios.get('http://localhost:3001/api/type')
+        .then((json) => {
+            return dispatch({
+                type: 'GET_TYPES',
+                payload: json.data
+            })
         })
     }
 }
-
 
 export function filterByTypes(payload){
     //console.log(payload)
@@ -98,10 +83,12 @@ export function filterByOrigin (payload) {
     }
 }
 
+
 export function postPokemon (payload) {
-    return async function (dispatch) {
-        const response = await axios.post('http://localhost:3001/api/pokemon', payload)
-        return response
+    return function (dispatch) {
+        axios.post('http://localhost:3001/api/pokemon', payload)
+        .then(response => response) 
     }
 }
+
 

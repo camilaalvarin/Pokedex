@@ -3,7 +3,7 @@ import './CardStyles.css'
 
 export default function Card ({name, image, type, Types}) {
 
-    let letra = name.toUpperCase()
+     let letra = name    // .toUpperCase()
     return (
 
         <div className="card">
@@ -29,26 +29,15 @@ export default function Card ({name, image, type, Types}) {
             <div className="description">
                 <h3>{letra}</h3>
                 <div>
-                    {/* {type?.map((el,index)=>{
-                        return <div key={index}>{el}</div>
-                    })} */}
+                    <div className="descriptionTypes">
+                        {type && type.map((el,index)=>{
+                            return <p key={index}>{el}</p>
+                        })}
 
-                    {/* {type?type.map((el,index)=>{
-                        return <div key={index}>{el}</div>
-                    }) : 'poisoN'} */}
-                <div className="descriptionTypes">
-                    {type && type.map((el,index)=>{
-                        return <p key={index}>{el}</p>
-                    })}
-
-                    {Types && Types.map((el,index)=>{
-                        return <p key={index}>{el.name}</p>
-                    })}
-                </div>
-                    {/* {Types?Types.map((el,index)=>{
-                        return <div key={index}>{el}</div>
-                    }) : 'poisoN'} */}
-
+                        {/* {Types && Types.map((el,index)=>{
+                            return <p key={index}>{el.name}</p>
+                        })} */}
+                    </div>
                 </div>
 
                 

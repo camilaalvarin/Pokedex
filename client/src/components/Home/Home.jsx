@@ -14,7 +14,6 @@ export default function Home(){
 
     const dispatch = useDispatch();
     const allPokemons = useSelector((state) => state.pokemons);
-    // const allTypes = useSelector((state) => state.type);
     const types = useSelector((state) => state.type)
     console.log(types)
     const [orden,setOrden] = useState('');
@@ -48,31 +47,19 @@ export default function Home(){
     console.log('camilita')
 
     // -------------------------------------
+
     useEffect(() => {
         dispatch(getAllPokemons());
         dispatch(getTypes());
+        // dispatch(filtroPorTipos());
     },[dispatch])
+
     // -------------------------------------
 
-    function first () {
-        setCurrentPage(1)
-    }
-    function prev () {
-        setCurrentPage(currentPage - 1)
-    }
-    function next () {
-        setCurrentPage(currentPage + 1)
-    }
-    function last () {
-        setCurrentPage(camilita)
-    }
+  
     
     // FIN PAGINADO
 
-    // const onClick = (e) => {
-    //     e.preventDefault();
-    //     dispatch(getAllPokemons())
-    // }
 
     const orderByNames = (e) => {
         e.preventDefault();
@@ -87,17 +74,12 @@ export default function Home(){
     const filteredByOrigin = (e) => {
         e.preventDefault();
         dispatch(filterByOrigin(e.target.value))
-        // setOrdenAttack(`Ordenado ${e.target.value}`)
     }
 
     function handleClick (e){
         e.preventDefault();
         dispatch(getAllPokemons());
     }
-
-    // function filterType(e){
-    //     dispatch(getTypes(e.target.value));
-    // }
     
     function handleFilterByTypes(e) {
         dispatch(filterByTypes(e.target.value));
@@ -112,23 +94,22 @@ export default function Home(){
             </div>
             <SearchBar />
 
-            <select onChange={e => {orderByNames(e)}}>
+            <select className="homeSelect" onChange={e => {orderByNames(e)}}>
                 <option value='asc'>Asc AZ</option>
                 <option value='desc'>Desc ZA</option>
             </select>
-            <select onChange={e => {orderByAttacks(e)}}>
-                {/* <option value='all'>Todos</option> */}
+            <select className="homeSelect" onChange={e => {orderByAttacks(e)}}>
                 <option value='maxAttack'>Stronger to Weaker</option>
                 <option value='minAttack'>Weaker to Stronger</option>
             </select>
             
-            <select onChange={e => {filteredByOrigin(e)}}>
+            <select className="homeSelect" onChange={e => {filteredByOrigin(e)}}>
                 <option value='all'>All</option>
                 <option value='db'>Created</option>
                 <option value='api'>Existentes</option>
             </select>
 
-            <select onChange={(e) => {handleFilterByTypes(e)}}>
+            <select className="homeSelect" onChange={(e) => {handleFilterByTypes(e)}}>
                     <option value="all">Types / Show All</option>
                     {types
                     .sort((a, b) => {
@@ -147,38 +128,23 @@ export default function Home(){
                 <input type='submit' className="crear" value='Crear Pokemon!' />
             </Link>
             <button className="loadAllButton" onClick={(e) => handleClick(e)} >Load all pokémons</button> 
-
-                
-                {/* 
-                <select>
-                    <option value='all'>Todos</option>
-                    <option value='alive'>Vivos</option>
-                    <option value='deceased'>Muertos</option>
-                    <option value='unknown'>Desconocido</option>
-                    <option value='presumeddead'>Probablemente muerto</option>
-                </select>
-            */}
             
             <div  className="father-flex">
             {
             !currentPokemons.length?
                     <Loading /> :
-            currentPokemons?.map(el => {
-                        return (<div>
+            currentPokemons.map(el => {     
+                        return (<div key={el.id}>
                                 <Link to={"/home/" + el.id}>
-                                    <Card name={el.name} image={el.image} type={el.type} Types={el.Types} key={el.id}/>
+                                    <Card name={el.name} image={el.image} type={el.type} key={el.id}/> 
                                 </Link>
                             </div>
                         )
                 })
             }
             </div>
-
             <div className="paginadoContainer">
-                <div className="paginadoFirstButtons">
-                    <button className="firstButton" type="button" disabled={currentPage === 1} onClick={first}>FIRST</button>
-                    <button className="prevButton" type="button" disabled={currentPage === 1} onClick={prev}>PREV</button>
-                </div>
+               
                 <div className="paginadoPages">
                     <Paginado
                     pokemonsPerPage={pokemonsPerPage}
@@ -188,12 +154,7 @@ export default function Home(){
                     page={page}
                     />
                 </div>
-                <div className="paginadoLastButtons">
-                    <button className="nextButton" type="button" disabled={currentPage === camilita} onClick={next}>NEXT</button>
-                    <button className="lastButton" type="button" disabled={currentPage === camilita} onClick={last}>LAST</button>
-                </div>
             </div>
-            {/* <SearchBar /> */}
         </div>
     )
 }

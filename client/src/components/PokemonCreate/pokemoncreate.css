@@ -48,3 +48,32 @@
     padding-top: 30px;
     /* padding-bottom: -50px; */
 }
+
+.pokeCreateUl {
+    margin-top: -20px;
+    margin-left: 250px;
+    margin-bottom: -30pxx;
+
+}
+
+select {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-left: 10px;
+
+}
+
+.LabelCreate{
+    margin-left: -55px;
+}
+.pokeCreateLi:hover {
+    cursor: pointer;
+}
+
+.error {
+    margin-top: -20px;
+    color: red;
+    font-weight: bold;
+}
